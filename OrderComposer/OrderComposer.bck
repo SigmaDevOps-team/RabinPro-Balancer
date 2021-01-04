@@ -77,9 +77,16 @@ void _coutdiff(_timer s, _timer e = _snow()) {
 
 
 int main() {
+    Price p(1, "BTC", "USDT");
+    cout << p.get_value() << endl;
+    
     PriceDataset pd;
     GetPrices(pd);
-    ComposeAndPushOrders(pd);
+
+    // for (auto p: pd.dataset)
+    //     cout << p->symbol << ' ' << p->base << ' ' << p->id << ' ' << p->value << endl;
+
+    // ComposeAndPushOrders(pd);
 }
 
 

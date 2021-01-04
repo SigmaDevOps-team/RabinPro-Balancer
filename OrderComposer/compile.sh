@@ -1,1 +1,1 @@
-g++ -std=c++14 OrderComposer.cpp redis-plus-plus/compile/lib/libredis++.a -lredis++ -lhiredis -pthread -o order-composer
+g++ -std=c++14 OrderComposer.cpp redis-plus-plus/compile/lib/libredis++.a -lredis++ -lhiredis DevTools.cpp Components.cpp Constants.cpp PriceControllers.cpp -pthread -o order-composer
