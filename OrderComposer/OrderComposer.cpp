@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
+// #include <filesystem>
 #include <sw/redis++/redis++.h>
 
 #include "Constants.h"
@@ -14,10 +15,12 @@ parameters param;
 void GetPrices(PriceDataset&);
 void ComposeAndPushOrders(PriceDataset);
 vector<pair<string, string>>* GetPairs();
+void ReadPatterns();
 
 int main() {
     PriceDataset pd;
     GetPrices(pd);
+    // ReadPatterns();
 }
 
 void GetPrices(PriceDataset &pd) {
@@ -27,6 +30,12 @@ void GetPrices(PriceDataset &pd) {
         cout << pd[id] << endl;
     }
 }
+
+// void ReadPatterns() {
+//     string path = "./patterns";
+//     for (const auto &entry : filesystem::directory_iterator(path))
+//         cout << entry.path() << endl;
+// }
 
 vector<pair<string, string>>* GetPairs() {
     Redis redis(param.REDIS_ADDRESS);
@@ -50,4 +59,3 @@ vector<pair<string, string>>* GetPairs() {
     
     return result;
 }
-
