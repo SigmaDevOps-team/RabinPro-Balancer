@@ -13,4 +13,9 @@ struct parameters {
     const string PAIR_LIST_REDIS_ENDPOINT = "PAIRS";
     const string PAIR_LIST_REDIS_QUERY =
         MODULE_REDIS_PREFIX + PAIR_LIST_REDIS_ENDPOINT;
+
+    const string PATTERNS_LOCATION = "./patterns";
+    const string PATTERN_NAME_REDIS_ENDPOINT = "PATTERN_NAME";
+    const string PATTERN_NAME_REDIS_QUERY =
+        MODULE_REDIS_PREFIX + PATTERN_NAME_REDIS_ENDPOINT;
 };

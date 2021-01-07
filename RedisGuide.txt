@@ -1,0 +1,6 @@
+RPB:PATTERN_NAME    ---> sample: soft-linear-resistance
+RPB:PAIRS           ---> sample: BTC/USDT,BTC/IRR,USDT/IRR
+RPB:BINACNE:BTCUSDT --->
+RPB:USDT_PRICE
+RPB:BINANCE:API_KEY
+RPB:BINANCE:API_SECRET

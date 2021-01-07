@@ -1,4 +1,4 @@
-g++ -std=c++17 \
+g++ -std=c++11 \
 OrderComposer.cpp \
 DevTools.cpp \
 Components.cpp \
