@@ -1,11 +1,13 @@
 # python3 PushRabinOrder.py <Asset> <Base> <Volume> <Fee> <Type>
-import tools, parameters, json, requests, time, os
+import json, requests, time, os
+import parameters as param
 from database import write
 from retrying import retry
 import time
+from datetime import datetime
 
-@retry(stop_max_attempt_number = parameters.max_push_retry)
-def push_order(asset, base, volume, fee, type):
+@retry(stop_max_attempt_number = param.max_push_retry)
+def do(asset, base, volume, fee, type):
     """
     payload = { # bid?
         'asset': asset,
@@ -15,9 +17,9 @@ def push_order(asset, base, volume, fee, type):
     }
 
     headers = {
-        'Authorization': 'Bearer ' + parameters.rabinpro_token,
+        'Authorization': 'Bearer ' + param.rabinpro_token,
     }
-    response = requests.request("POST", parameters.push_url, headers=headers, data=payload)
+    response = requests.request("POST", param.push_url, headers=headers, data=payload)
     response = json.loads(response)
     """
     response = {
@@ -26,18 +28,16 @@ def push_order(asset, base, volume, fee, type):
     }
     assert (response['status'] == 200)
     print (write.insert(
-        database = parameters.database,
-        table    = parameters.database_table_maps['orders'],
+        database = param.database,
+        table    = param.database_table_maps['orders'],
         data = {
-            'id': response['id'],
-            'status': parameters.pushed_status,
-            'filled' : 0,
+            'id'         : response['id'],
+            'status'     : param.pushed_status,
+            'filled'     : 0,
+            'created_at' : datetime.now(),
+            'asset'      : asset,
+            'base'       : base,
         }
     ))
 
-    return response
-
-args = tools.get_args()
-response = push_order(**args)
-time.sleep(parameters.wait_after_push)
-os.system("python3 Cancel.py " + "id=" + str(response['id']))
+    os.system(param.bashcmd['rabin']['call_check_and_wait'] % (str(response['id'])))

@@ -12,8 +12,8 @@ __copy_right__ = "SigmaDevOps"
 
 from randstr import randstr
 
-from worker import parameters
-from worker.components.database import connector, read
+import parameters
+from database import connector, read
 
 def insert(database, table, data):
     database = connector.filter_injection(database)

@@ -5,31 +5,37 @@ from database import write
 from retrying import retry
 from time import time
 
+
 @retry(stop_max_attempt_number = parameters.max_cancel_retry)
 def push_order(id):
-    payload = {
-        'id': id,
-    }
+    pass
+    # payload = {
+    #     'id': id,
+    # }
 
-    headers = {
-        'Authorization': 'Bearer ' + parameters.rabinpro_token,
-    }
+    # headers = {
+    #     'Authorization': 'Bearer ' + parameters.rabinpro_token,
+    # }
 
-    response = requests.request("POST", parameters.cancel_url, headers=headers, data=payload)
-    response = json.loads(response)
-    assert (response['status'] == 200)
+    # response = requests.request("POST", parameters.cancel_url, headers=headers, data=payload)
+    # response = json.loads(response)
+    # assert (response['status'] == 200)
 
-    write.update(
-        database = parameters.database,
-        table    = parameters.database_table_maps['orders'],
-        data = {
-            'id': id,
-        }
-        upd = {
-            'status': parameters.canceled_status
-        }
-    )
+    # write.update(
+    #     database = parameters.database,
+    #     table    = parameters.database_table_maps['orders'],
+    #     data = {
+    #         'id': id,
+    #     }
+    #     upd = {
+    #         'status': parameters.canceled_status
+    #     }
+    # )
 
-args = tools.get_args()
-check_order(**args)
-os.system("python3 RabinOrderController/AskFill")
+def do(id):
+    timer = time
+    while (time() - timer < parameters.order_age):
+        if (is_finished(id)):
+            os.system(parameters.bashcmd['call'])
+            exit(0)
+    os.system(parameters.bashcmd['rabin']['call_cancel']%(str(id)))

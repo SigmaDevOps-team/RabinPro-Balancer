@@ -38,3 +38,15 @@ wait_after_push = 3
 pushed_status = 1
 canceled_status = 2
 
+shmaster = './OrderController.py'
+bashcmd = {
+    'rabin': {
+        'call_check_and_wait': shmaster + ' rabin check id=%s &',
+        'call_cancel' : shmaster + ' rabin cancel id=%s &',
+    },
+    'binance': {
+        'call_push': shmaster + ' binance push id=%s &',
+    }
+}
+
+order_age = 60 # age in seconds
