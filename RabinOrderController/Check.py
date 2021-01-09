@@ -8,7 +8,7 @@ from time import time
 @retry(stop_max_attempt_number = parameters.max_cancel_retry)
 def push_order(id):
     payload = {
-        'id', id
+        'id': id,
     }
 
     headers = {

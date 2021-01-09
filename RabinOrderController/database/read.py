@@ -15,8 +15,8 @@ Notes:
     1. Assertions: [35] 
 """
 
-from worker import parameters
-from worker.components.database import connector
+import parameters
+from database import connector
 
 def get_table(database, table):
     database = connector.filter_injection(database)

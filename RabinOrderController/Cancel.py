@@ -7,8 +7,9 @@ from time import time
 
 @retry(stop_max_attempt_number = parameters.max_cancel_retry)
 def cancel_order(id):
+    """
     payload = {
-        'order_id', id
+        'order_id': id,
     }
 
     headers = {
@@ -17,6 +18,12 @@ def cancel_order(id):
 
     response = requests.request("POST", parameters.cancel_url, headers=headers, data=payload)
     response = json.loads(response)
+    """
+    response = {
+        'status' : 200,
+        'id' : 1,
+        'filled' : 0.5,
+    }
     assert (response['status'] == 200)
 
     write.update(
@@ -24,12 +31,16 @@ def cancel_order(id):
         table    = parameters.database_table_maps['orders'],
         data = {
             'id': id,
-        }
+        },
         upd = {
-            'status': parameters.canceled_status
-        }
+            'status': parameters.canceled_status,
+            'filled': response['filled'],
+        },
     )
 
+    return response
+
 args = tools.get_args()
-cancel_order(**args)
-os.system("python3 RabinOrderController/Check")
+response = cancel_order(**args)
+# os.system("python3 RabinOrderController/Check")
+os.system("python3 BinanceOrderController/Push id=" + args['id'])

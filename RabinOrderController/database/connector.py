@@ -19,7 +19,7 @@ import mysql.connector
 from retrying import retry
 from datetime import datetime
 
-from worker import parameters
+import parameters
 
 def filter_key_clause(key):
     return '%s'%key
