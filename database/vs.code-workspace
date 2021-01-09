@@ -1,0 +1,40 @@
+{
+	"folders": [
+		{
+			"path": "../../../../SigmaBlockChainServices"
+		},
+		{
+			"path": "../../../TLC"
+		},
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../log_test"
+		}
+	],
+	"settings": {
+			"logViewer.watch": [
+				{
+					"title": "Debug",
+					"pattern": "/Users/saman/Desktop/RabinCash/TroubLenza/log_test/active/debug.log"
+				},
+				{
+					"title": "Warning",
+					"pattern": "/Users/saman/Desktop/RabinCash/TroubLenza/log_test/active/warning.log"
+				},
+				{
+					"title": "Standard",
+					"pattern": "/Users/saman/Desktop/RabinCash/TroubLenza/log_test/active/std.log"
+				},
+				{
+					"title": "Historical",
+					"pattern": "/Users/saman/Desktop/RabinCash/TroubLenza/log_test/historical/log*"
+				}
+			],
+			"logViewer.options": {
+				"fileCheckInterval": 200,
+				"fileListInterval": 5000
+			}
+	}
+}
