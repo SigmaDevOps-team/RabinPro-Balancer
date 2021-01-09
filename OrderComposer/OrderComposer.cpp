@@ -7,7 +7,6 @@
 
 #include "Constants.h"
 #include "Components.h"
-#include "PriceControllers.h"
 #include "OrderData.h"
 
 using namespace sw::redis;
@@ -28,9 +27,10 @@ int main() {
     cout << op.orders.size() << endl;
     for (OrderTemplate x: op.orders)
         cout << x.is_sell() << ' ' << x.VolumeFraction << endl;
-
-    for (OrderTemplate x: op.orders)
-        
+    
+    op.apply("BTC", "USDT");
+    op.read_budget();
+    op.push_orders(pd);    
 }
 
 void GetPrices(PriceDataset &pd) {

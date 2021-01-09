@@ -1,6 +1,8 @@
 #include "Constants.h"
 #include "Components.h"
 #include "PriceControllers.h"
+
+#include <iostream>
 #include <sw/redis++/redis++.h>
 
 using namespace sw::redis;
@@ -17,11 +19,8 @@ double Price::get_value()
 
     auto val = redis.get(query);
     if (!val)
-    {
         found_exception("Unable to Fetch Price from Redis: " + symbol());
-    }
-    value = stod(*val);
-    return stod(*val);
+    return value = stod(*val);
 }
 
 string Price::symbol()

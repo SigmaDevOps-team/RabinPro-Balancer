@@ -1,6 +1,8 @@
 #include <string>
 #include <vector>
 
+#include "PriceControllers.h"
+
 using namespace std;
 
 struct OrderTemplate {
@@ -12,15 +14,21 @@ struct OrderTemplate {
         PriceMargin = _pm; VolumeFraction = _vf;
     }
 
-    bool is_sell();
     bool is_buy();
+    bool is_sell();
     string get_type();
+    void push(long double, long double, string, string);
 };
 
 struct OrderPattern {
     vector <OrderTemplate> orders;
+    double BaseBudget, AssetBudget;
+    string AppliedBase, AppliedAsset;
 
-    void read_from_file(ifstream&);
-    void generate_from_file(); // TODO
+    void read_budget();
     void make_standard();
+    void generate_from_file();       // TODO
+    void apply(string, string);
+    void read_from_file(ifstream&);
+    void push_orders(PriceDataset&);
 };
