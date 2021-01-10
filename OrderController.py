@@ -22,6 +22,14 @@ def binance_push(args):
     from BinanceOrderController import Push
     Push.do(**args)
 
+def database_push(args):
+    from database import push
+    push.do(**args)
+
+def database_change_final_balance(args):
+    from database import final_balance
+    final_balance.do(**args)
+
 func_map = {
     'rabin': {
         'push': rabin_push,
@@ -30,6 +38,10 @@ func_map = {
     },
     'binance': {
         'push': binance_push,
+    },
+    'database': {
+        'push': database_push,
+        'chbalance' : database_change_final_balance,
     }
 }
 

@@ -7,7 +7,7 @@ from time import time
 
 
 @retry(stop_max_attempt_number = parameters.max_cancel_retry)
-def push_order(id):
+def is_finished(id):
     pass
     # payload = {
     #     'id': id,
@@ -36,6 +36,6 @@ def do(id):
     timer = time
     while (time() - timer < parameters.order_age):
         if (is_finished(id)):
-            os.system(parameters.bashcmd['call'])
+            os.system(parameters.bashcmd['binance']['call_push']%(id))
             exit(0)
     os.system(parameters.bashcmd['rabin']['call_cancel']%(str(id)))

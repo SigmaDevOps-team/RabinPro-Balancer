@@ -9,6 +9,7 @@ rabinpro_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IntcI
 database = 'rabinpro_balancer'
 database_table_maps = {
     'orders': 'orders',
+    'final_balances': 'final_balances',
 }
 special_characters = ';!@#$%^&*<>|\\/'
 database_server_config = {
@@ -46,7 +47,21 @@ bashcmd = {
     },
     'binance': {
         'call_push': shmaster + ' binance push id=%s &',
+    },
+    'database': {
+        'call_push': shmaster + ' database push db=%s table=%s data="%s" &',
+        'chbalance': shmaster + ' database chbalance asset=%s change=%s &',
     }
 }
 
 order_age = 60 # age in seconds
+
+redis_query = {
+    'order_data_key': 'RPB:ORDERS:%s',
+}
+
+redis = {
+    'host' : 'localhost',
+    'port' : 6379,
+    'db'   : 0,
+}

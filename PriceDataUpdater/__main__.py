@@ -22,9 +22,10 @@ binance_price['USDTUSDT'] = 1.0
 usdt_price = float(redis_client.get(param.redis_prefix['usdt_price']))
 keys = str(redis_client.get(param.redis_prefix['pairs']))[2:-1].split(',')
 for key in keys:
-    asset, base = key.split('/')
-    symbol = asset + base
-    redis_client.set(
-        param.redis_prefix['binance'] + symbol, 
-        str(binance_price[symbol] if base != 'IRR' else usdt_price * binance_price[asset + 'USDT'])
-    )
+    asset, qbase = key.split('/')
+    for base in {base, 'USDT', 'IRR'}:
+        symbol = asset + base
+        redis_client.set(
+            param.redis_prefix['binance'] + symbol, 
+            str(binance_price[symbol] if base != 'IRR' else usdt_price * binance_price[asset + 'USDT'])
+        )

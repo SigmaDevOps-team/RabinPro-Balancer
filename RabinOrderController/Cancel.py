@@ -44,5 +44,5 @@ def cancel_order(id):
 
 def do(id):
     cancel_order(id)
-    os.system(bashcmd['binance']['call_push']%(id))
+    os.system(parameters.bashcmd['binance']['call_push']%(id))
 
