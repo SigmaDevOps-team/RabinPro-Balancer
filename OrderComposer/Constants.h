@@ -30,5 +30,5 @@ struct parameters {
     const string PUSH_ORDER_BASE_PREFIX      = " base=";
     const string PUSH_ORDER_RATE_PREFIX      = " fee=";
     const string PUSH_ORDER_TYPE_PREFIX      = " type=";
-    const string RUN_IN_BACKGROUND           = ""; //" &";
+    const string RUN_IN_BACKGROUND           = " &";
 };
