@@ -4,7 +4,6 @@ from Components import get_args, rasterize
 args = get_args()
 
 print("reached here!! args=", args)
-exit(0)
 
 def rabin_push(args):
     from RabinOrderController import Push
