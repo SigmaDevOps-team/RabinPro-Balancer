@@ -8,7 +8,7 @@ import randstr
 import parameters as param
 
 def change(asset, change):
-    os.system(param.bashcmd['database']['chbalance'] % (asset, str(change)))
+    # os.system(param.bashcmd['database']['chbalance'] % (asset, str(change)))
     print (asset, change)
 
 def do(id):
@@ -59,6 +59,8 @@ def do(id):
             fill['commissionAsset'],
             -float(fill['commission'])
         )
+
+    print(response)
     
 
 

@@ -40,4 +40,5 @@ def do (asset, change):
             ))
     except Exception as e:
         print(e)
+        raise e
 

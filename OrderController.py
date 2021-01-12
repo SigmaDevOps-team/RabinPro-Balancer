@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+
 from Components import get_args, rasterize
 
 args = get_args()
@@ -14,8 +14,8 @@ def rabin_check(args):
     Check.do(**args)
 
 def rabin_delete(args):
-    from RabinOrderController import Delete
-    Delete.do(**args)
+    from RabinOrderController import Cancel
+    Cancel.do(**args)
 
 def binance_push(args):
     from BinanceOrderController import Push
@@ -29,11 +29,15 @@ def database_change_final_balance(args):
     from database import final_balance
     final_balance.do(**args)
 
+def database_update(args):
+    from database import update
+    update.do(**args)
+
 func_map = {
     'rabin': {
         'push': rabin_push,
         'check': rabin_check,
-        'delete': rabin_delete,
+        'cancel': rabin_delete,
     },
     'binance': {
         'push': binance_push,
@@ -41,6 +45,7 @@ func_map = {
     'database': {
         'push': database_push,
         'chbalance' : database_change_final_balance,
+        'update': database_update,
     }
 }
 

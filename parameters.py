@@ -1,9 +1,3 @@
-# URLs
-url = 'https://testapi.rabinpro.ir'
-push_url = url+'/api/rabinCash/buy/add'
-
-# token
-rabinpro_token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IntcInVzZXJfaXBcIjpudWxsLFwidXNlcl9pZFwiOjE0NDEsXCJ1c2VyX3JvbGVcIjpudWxsfSIsImV4cCI6MTYxMDI4NTgxMiwiaWF0IjoxNjEwMTk5NDEyLCJuYmYiOjE2MTAxOTk0MTJ9.RszBv3p6_6eg7AXh1p-gl4Oqn2ZPRv0PJZQ66pB0G9U'
 
 # database
 database = 'rabinpro_balancer'
@@ -35,10 +29,6 @@ max_push_retry = 3
 max_cancel_retry = 5
 wait_after_push = 3
 
-#
-pushed_status = 1
-canceled_status = 2
-
 shmaster = './OrderController.py'
 bashcmd = {
     'rabin': {
@@ -49,8 +39,9 @@ bashcmd = {
         'call_push': shmaster + ' binance push id=%s &',
     },
     'database': {
-        'call_push': shmaster + ' database push db=%s table=%s data="%s" &',
-        'chbalance': shmaster + ' database chbalance asset=%s change=%s &',
+        'call_push'   : shmaster + ' database push db=%s table=%s data="%s" &',
+        'chbalance'   : shmaster + ' database chbalance asset=%s change=%s &',
+        'call_update' : shmaster + ' database update id=%s data=%s'
     }
 }
 
@@ -65,3 +56,18 @@ redis = {
     'port' : 6379,
     'db'   : 0,
 }
+
+rabin_api = {
+    'chech_order': {
+        'url': 'http://rabinpro.com/api',
+        'method': 'POST',
+    },
+}
+
+order_status = {
+    'pending'    : 0,
+    'pushed'     : 1,
+    'picked'     : 2,
+    'propagated' : 3,
+}
+
