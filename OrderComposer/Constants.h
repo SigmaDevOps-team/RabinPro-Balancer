@@ -24,7 +24,7 @@ struct parameters {
     const string BUDGET_REDIS_ASSET_SUFFIX   = ":ASSET";
 
     const int PUSH_ORDER_NUMBERIC_INPUT_LEN  = 12;
-    const string PUSH_ORDER_SYSTEM_PREFIX    = "../OrderController.py rabin push";
+    const string PUSH_ORDER_SYSTEM_PREFIX    = "python3 ../OrderController.py rabin push";
     const string PUSH_ORDER_VOLUME_PREFIX    = " volume=";
     const string PUSH_ORDER_ASSET_PREFIX     = " asset=";
     const string PUSH_ORDER_BASE_PREFIX      = " base=";

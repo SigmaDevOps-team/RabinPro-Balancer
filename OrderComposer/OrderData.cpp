@@ -91,7 +91,7 @@ void OrderPattern::push_orders(PriceDataset &pd) {
     cout << "~ " << rate << endl;
     for (OrderTemplate &o: orders) {
         o.push(
-            o.is_buy()? BaseBudget : AssetBudget * rate,
+            o.is_buy()? BaseBudget : (AssetBudget * rate),
             rate,
             AppliedAsset,
             AppliedBase

@@ -29,7 +29,7 @@ max_push_retry = 3
 max_cancel_retry = 5
 wait_after_push = 3
 
-shmaster = './OrderController.py'
+shmaster = 'python3 ../OrderController.py'
 bashcmd = {
     'rabin': {
         'call_check_and_wait': shmaster + ' rabin check id=%s &',
@@ -58,8 +58,16 @@ redis = {
 }
 
 rabin_api = {
-    'chech_order': {
-        'url': 'http://rabinpro.com/api',
+    'push_order' : {
+        'url': 'https://testapi.rabinpro.ir/api/rabinCash/orderAdd',
+        'method': 'POST',
+    },
+    'check_order': {
+        'url': 'https://testapi.rabinpro.ir/api/rabinCash/orderStatus',
+        'method': 'POST',
+    },
+    'cancel_order': {
+        'url': 'https://testapi.rabinpro.ir/api/rabinCash/cancelOrder',
         'method': 'POST',
     },
 }
